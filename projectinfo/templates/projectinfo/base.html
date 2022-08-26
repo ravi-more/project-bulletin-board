@@ -1,0 +1,202 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{% static 'projects/css/bootstrap.min.css' %}"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'projects/main.css' %}">
+	{% if title %}
+	<title>Projects - {{ title }}</title>
+	{% else %}
+	<title>Welcome</title>
+	{% endif %}
+
+
+</head>
+
+<body style="background-color: rgb(22, 26, 27)">
+	<!--rgb(40, 47, 49)-->
+	<header class="site-header">
+
+		<!--	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">		-->
+
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+			<div class="container">
+
+				<a class="navbar-brand ml-2 mr-4" href="{% url 'projects-home' %}">Project Bulletin</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+					aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarToggle">
+					<div class="navbar-nav mr-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle mt-2" href="#" id="navbarDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Project Information
+							</a>
+							<div class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{% url 'projects-home' %}">Pending Projects</a>
+								<a class="dropdown-item" href="{% url 'projects-approved' %}">Approved Projects</a>
+								<a class="dropdown-item" href="{% url 'projects-projects' %}">All Projects</a>
+								<a class="dropdown-item" href="{% url 'previous-projects' %}">Previous Year
+									Projects</a>
+							</div>
+						</li>
+					</div>
+
+
+					<!-- Navbar Right Side -->
+					<div class="navbar-nav">
+						<a class="nav-item nav-link" href="{% url 'projects-create'%}">Add Your Synopsis</a>
+						{% if user.is_authenticated %}
+
+						<h6 class="nav-item nav-link text-uppercase">Welcome, {{ user.username }}</h6>
+						<a class="nav-item nav-link" href="{% url 'logout'%}">Logout</a>
+
+						{% else %}
+						<a class="nav-item nav-link" href="{% url 'login'%}">Teacher Login</a>
+						<a class="nav-item nav-link" href="/admin">Admin Login</a>
+
+						<!--
+						<a class="nav-item nav-link" href="{% url 'register'%}">Register</a>
+						-->
+						<!-- <a class="nav-item nav-link" href="{% url 'register'%}">Register</a> -->
+						{% endif %}
+						<a class="nav-item nav-link" href="{% url 'projects-about' %}">About</a>
+
+						<a class="nav-item nav-link" href="{% url 'projects-help' %}">Help</a>
+
+
+					</div>
+
+
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<main role="main" class="container">
+		<div class="row">
+			<div class="col-md-8 bg-dark text-light">
+
+				<div class="media-body content-section bg-dark">
+					<b>
+						<h2 class="bg-light">
+							<center><img width="120px" height="60px" src="{% static 'projects/Sinhgad.png'%}"
+									class="img-fluid"></center>
+						</h2>
+					</b>
+
+					<div>
+						<b>
+							<h2>
+
+								<center>
+									<h5 class=" text-light">Sinhgad Institute of
+										Technology, Lonavala</h5>
+								</center>
+								</font>
+							</h2>
+						</b>
+					</div>
+					<div class=" bg-dark ">
+
+						<center>Department of Computer Engineering</center>
+					</div>
+				</div>
+
+				{% if messages %}
+				{% for message in messages %}
+				<div class="alert alert-{{message.tags}}">
+					{{message}}
+				</div>
+				{% endfor %}
+				{% endif %}
+				{% block content %}{% endblock %}
+
+			</div>
+			<div class="col-md-4 bg-dark text-light">
+
+				<div class="content-section text-light bg-secondary">
+					<h3 style="text-align: center;" class=" font-weight-bold text-white">For Students</h3>
+					<h6 class="text-light">Submit your project details here! </h6>
+					<a style="font-size:20px" class=" form-control btn btn-primary mb-4 mt-4"
+						href="{% url 'projects-create'%}">Add Your
+						Synopsis</a>
+
+					<hr class="mb-3">
+
+
+				</div>
+				<!--
+				<div class="content-section text-light bg-secondary">
+					<h3 style="text-align: center;" class=" font-weight-bold text-white">Sinhgad Institute of
+						Technology, Lonavala.</h3>
+
+					</p>
+					<br>
+					<center>
+						<img class=" align-self-center" src="{% static 'projects/Sinhgad.png'%}" class="img-fluid">
+					</center>
+					<hr class="mb-3">
+
+					<h3 style="text-align: center; color:rgb(214, 188, 188)" class=" font-weight-bold">Department of
+						Computer
+						Engineering </h>
+
+
+				</div>
+				-->
+
+			</div>
+
+		</div>
+	</main>
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

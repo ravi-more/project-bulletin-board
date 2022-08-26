@@ -1,0 +1,25 @@
+{
+    /*
+    "editor.fontSize": 16,
+    "editor.fontWeight": "400",
+    "editor.fontFamily": "Source Code Pro",
+    "debug.console.fontFamily": "Source Code Pro",
+    "debug.console.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontWeight": "400",
+    */
+    // "python.pythonPath": "/home/admin/Music/pyenv/bin/python3",
+    /*"python.autoComplete.extraPaths": [
+        "/home/admin/Music/pyenv/lib/python3.7/site-packages",
+    ],
+    "python.pythonPath": "/home/ubuntu/Music/myenv/bin/python",
+    */
+    "python.autoComplete.extraPaths": [
+        "/home/admin/Project/myenv/lib/python3.7/site-packages",
+    ],
+    "python.pythonPath": "/home/ubuntu/Project/myenv/bin/python",
+    "python.formatting.provider": "black",
+    "python.analysis.extraPaths": [
+        "/home/admin/Project/myenv/lib/python3.7/site-packages"
+    ],
+}

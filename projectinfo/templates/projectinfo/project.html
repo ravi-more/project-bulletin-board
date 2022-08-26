@@ -1,0 +1,54 @@
+{% extends "projectinfo/base.html" %}
+{% block content %}
+
+
+<form class=" form-group" method="GET" action="/projects/">
+
+	<h4 class="mb-4">
+
+		<input class=" form-control mb-2 mt-2 ml-2 ml-2" type="text" name="year" placeholder="Enter Year in 'YYYY'"
+			value='{{ request.GET.year }}'>
+		<select class="form-control mb-2 mt-2 ml-2 ml-2" name="department" value='{{ request.GET.department }}'>
+			<option value='{{ request.GET.department }}'>{{ request.GET.department }}</option>
+			<option value="Computer Engineering">Computer Engineering</option>
+			<option value="E&TC Engineering">E&TC Engineering</option>
+			<option value="Electronics Engineering">Electronics Engineering</option>
+			<option value="Mechanical Engineering">Mechanical Engineering</option>
+			<option value="Information Technology">Information Technology</option>
+			<option value="Civil Engineering">Civil Engineering</option>
+		</select>
+		<button class=" form-control form-control-plaintextbtn btn-info mb-2 mt-2 ml-2 ml-2"
+			method="submit">Search</button>
+	</h4>
+
+	<hr>
+
+</form>
+
+
+{% for i in posts %}
+
+<article class="media content-section bg-transparent text-light">
+	<div class="media-body ">
+
+		<h5><a class="article-title text-light " href="{% url 'projects-detail' i.id %}"> {{ i.Title }}</a></h5>
+		Status :
+		{% if i.status == "Approved" %}
+		<a class="btn btn-outline-success">
+			{{i.status}}
+		</a>
+		{% elif i.status == "Rejected" %}
+		<a class="btn btn-outline-danger">
+			{{i.status}}
+		</a>
+		{% else %}
+		<a class="btn btn-outline-warning">
+			{{i.status}}
+		</a>
+		{% endif %}
+
+	</div>
+</article>
+{%endfor%}
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "projectinfo/base.html" %}
+{% block content %}
+
+
+<div class="pt-2 border-bottom">
+	<b>
+		<h2>
+			<font style="font-size : 30px" class="form-control bg-transparent font-weight-bold text-light">
+				<center>Project Bulletin Board</center>
+			</font>
+		</h2>
+	</b>
+</div>
+<div class=" media-content">
+	<b>
+
+		<h3 style="color: rgb(37, 16, 16); font-size: 28px; text-align: center; background: yellow; 
+		" class=" form-control font-weight-bold	 mt-1 mb-3">
+			Pending Projects
+		</h3>
+
+	</b>
+	<left>
+		<h6><a href="{% url 'projects-approved' %}">Click for Approved Projects</a></h6>
+	</left>
+</div>
+<article class="media content-section bg-transparent">
+
+	<div class="media-body bg-transparent">
+		<marquee behavior="scroll" onmouseover="stop()" onmouseout="start()" direction="down" style="height:400px;">
+
+			{% for i in posts %}
+			<article class="media content-section bg-transparent ">
+				<div class="media-body">
+					<h5>
+						<a class="article-title text-light" href="{% url 'projects-detail' i.id %}"> {{ i.Title }}</a>
+					</h5>
+				</div>
+			</article>
+			{%endfor%}
+		</marquee>
+	</div>
+</article>
+
+
+
+{% endblock content %}

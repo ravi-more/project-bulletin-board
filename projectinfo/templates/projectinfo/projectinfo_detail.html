@@ -1,0 +1,95 @@
+{% extends "projectinfo/base.html" %}
+{% block content %}
+
+<article class="media content-section bg-transparent text-light ">
+	<div class="media-body">
+		<div class="border-bottom pt-2">
+			<h3 class="text-light">Serial No : {{ object.id }}</h3>
+
+		</div>
+		<div class="border-bottom pt-2 text-light">
+			<h3 class=" text-light">Project Subject : {{ object.Title }}</h3>
+		</div>
+
+		<div class="border-bottom pt-2">
+			<h3 class="text-light">Description : </h3>
+			<p class="article-content">{{ object.Description }}</p>
+		</div>
+		<b>
+			<p class="article-content mt-3"> Project is done by : </p>
+		</b>
+		<p class=" article-content">{{ object.Roll_Number_and_Names }}</p>
+		<P class=" border-bottom mt-2"></P>
+		<p class="   article-content"><b>Department :</b> {{ object.Department }}</p>
+		<P class=" border-bottom mt-2"></P>
+
+		<p class="  article-content"><b> Submitted :</b> {{ object.Submitted_Date }}</p>
+
+		<p class="mb-3 font-weight-bold">Status :
+			{% if object.status == "Approved" %}
+			<a class="btn btn-success ">
+				{{object.status}}
+			</a>
+			{% elif object.status == "Rejected" %}
+			<a class="btn btn-outline-danger ">
+				{{object.status}}
+			</a>
+
+			{% else %}
+			<a class="btn btn-outline-warning ">
+				{{object.status}}
+			</a>
+			{% endif %}
+
+			{% if user.is_authenticated %}
+
+			<a class="btn btn-info " href="{% url 'projects-changestatus' object.id %}">
+				Change Project Approval Status
+			</a>
+			{%endif%}
+
+
+			<!--	
+		</p>
+		<p class=" border"></p>
+		<p class=" mb-3"><b>Recommended : </b>{{ object.Recommended }}</p>
+		<P class=" border-bottom mt-2"></P>
+		-->
+
+
+
+			<b>
+				<p class="article-content mt-3"> Observation/remarks by faculty : </p>
+			</b>
+			<p class=" article-content">{{ object.Observations_or_remarks_by_faculty }}</p>
+			<P class=" border-bottom mt-2"></P>
+			<b>
+				<p class="article-content mt-3"> Names of Approval committee members : </p>
+			</b>
+			<p class=" article-content">{{ object.Name_of_Approval_committee_members }}</p>
+			<P class=" border-bottom mt-2"></P>
+			<p class=" mb-3"><b>Date of Approval : </b>{{ object.Date_of_Approval }}</p>
+
+			{% if user.is_authenticated %}
+
+
+			<hr class="mb-3 mt-3">
+
+			<center>
+				<a class="btn btn-light text-muted font-weight-bold" href="{% url 'projects-update' object.id %}">
+					Update Information
+				</a>
+				<a class="btn btn-danger" href="{% url 'projects-delete' object.id %}">
+					Delete
+				</a>
+
+			</center>
+			<hr>
+			{% endif %}
+	</div>
+
+</article>
+
+
+
+{% endblock content %}
